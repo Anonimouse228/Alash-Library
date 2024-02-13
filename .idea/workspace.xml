@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="408669dc-8a3a-4b25-8e43-ccb686058e46" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alash Library.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IDentification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Transaction.java" afterDir="false" />
-    </list>
+    <list default="true" id="408669dc-8a3a-4b25-8e43-ccb686058e46" name="Changes" comment="qqweqwe" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,6 +20,8 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="Ali &lt;suhansun13@gmail.com&gt;" />
+        <option value="ali" />
         <option value="sigma" />
       </list>
     </option>
@@ -100,8 +89,33 @@
       <option name="presentableId" value="Default" />
       <updated>1707796847646</updated>
       <workItem from="1707796848758" duration="526000" />
-      <workItem from="1707797655482" duration="1316000" />
+      <workItem from="1707797655482" duration="1688000" />
     </task>
+    <task id="LOCAL-00001" summary="qqweqwe">
+      <option name="closed" value="true" />
+      <created>1707799087552</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1707799087552</updated>
+    </task>
+    <task id="LOCAL-00002" summary="qqweqwe">
+      <option name="closed" value="true" />
+      <created>1707799212506</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1707799212506</updated>
+    </task>
+    <task id="LOCAL-00003" summary="qqweqwe">
+      <option name="closed" value="true" />
+      <created>1707799352916</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1707799352916</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -117,5 +131,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <MESSAGE value="wqeqweqwe" />
+    <MESSAGE value="qqweqwe" />
+    <option name="LAST_COMMIT_MESSAGE" value="qqweqwe" />
   </component>
 </project>
