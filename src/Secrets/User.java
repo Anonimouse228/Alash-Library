@@ -47,12 +47,9 @@ public class User {
     }
 
     public void displayUserInfo() {
-        if (isAdmin) {
-            System.out.println("Surname: '" + surname + "'" +
-                    ", Author: '" + lastname + "'" +
-                    ", Login '" + login + "'");
-        }
-        else System.out.println("Not enough rights");
+        System.out.println("Surname: '" + surname + "'" +
+                ", Author: '" + lastname + "'" +
+                ", Login '" + login + "'");
     }
     public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
