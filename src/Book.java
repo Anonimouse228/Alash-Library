@@ -17,5 +17,11 @@ public class Book {
         return isbn;
     }
 
-    public
+    public void displayBookInfo() {
+        System.out.println("name: '" + name + "'"  +
+                ", author: '" + author + "'"  +
+                ", genre: '" + genre + "'" +
+                ", language: '" + language + "'" +
+                ", ISBN: '" + isbn + "'" );
+    }
 }
