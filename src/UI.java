@@ -7,16 +7,17 @@ public class UI {
         // a = scanner.nextInt();
         System.out.println("Hello! Welcome to the greatest library on this computer!");
         while (exit) {
-            System.out.println("What do you want to do?\n" +
-                    "1. Add a physical book\n" +
-                    "2. Add an EBook\n" +
-                    "3. Check out a book\n" +
-                    "4. Check out an EBook\n" +
-                    "5. Display all the books in the library\n" +
-                    "6. Display the list of checked-out items\n" +
-                    "7. Display the transaction history\n" +
-                    "8. Display the last n of transactions\n" +
-                    "9. Exit the program");
+            System.out.println("""
+                    What do you want to do?
+                    1. Add a physical book
+                    2. Add an EBook
+                    3. Check out a book
+                    4. Check out an EBook
+                    5. Display all the books in the library
+                    6. Display the list of checked-out items
+                    7. Display the transaction history
+                    8. Display the last n of transactions
+                    9. Exit the program""");
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":

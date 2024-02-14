@@ -24,8 +24,8 @@ public class User {
     public String getPassword() {
         return password;
     }
-    public Boolean compare(String userpassword) {
-        return Objects.equals(password, hashPassword(userpassword));
+    public Boolean compare(String userPassword) {
+        return Objects.equals(password, hashPassword(userPassword));
     }
 
     public static String hashPassword(String password) {
