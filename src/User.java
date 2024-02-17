@@ -1,5 +1,3 @@
-package Secrets;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -8,16 +6,19 @@ import java.util.Objects;
 public class User {
     private final String surname;
     private String lastname;
+    private final String id;
     private final String login;
     private final String password;
+
     private boolean isAdmin;
 
-    public User(String surname, String lastname, String login, String password) {
+    public User(String surname, String lastname, String id, String login, String password) {
         this.lastname = lastname;
         this.login = login;
         this.surname = surname;
         this.lastname = lastname;
         this.password = hashPassword(password);
+        this.id = id;
         this.isAdmin = false;
     }
 
@@ -26,6 +27,22 @@ public class User {
     }
     public Boolean compare(String userPassword) {
         return Objects.equals(password, hashPassword(userPassword));
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     public static String hashPassword(String password) {

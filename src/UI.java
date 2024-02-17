@@ -1,7 +1,8 @@
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class UI {
-    public static void menu() {  // The function that shows menu
+    public static void menu() throws SQLException {  // The function that shows menu
         Scanner scanner = new Scanner(System.in);
         boolean exit = true;
         // a = scanner.nextInt();
@@ -14,7 +15,7 @@ public class UI {
                     3: Add a book
                     4: Return a book
                     5: Take a book
-                    6: Find a book by a isbn
+                    6: Find a book by a isbn 
                     7: Find a book
                     8: See transaction history
                     9: See last N transactions:\s
@@ -23,9 +24,11 @@ public class UI {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
+                    logIn();
                     System.out.println("----------------------------------------------------");
                     break;
                 case "2":
+                    Database.register();
                     System.out.println("----------------------------------------------------");
                     break;
                 case "3":
@@ -62,6 +65,27 @@ public class UI {
             }
         }
     }
+
+    public static void logIn() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the login:");
+        String login = scanner.nextLine();
+
+        System.out.println("Enter the password:");
+        String password = scanner.nextLine();
+
+//        if (Database.logIn(login, User.hashPassword(password))) {
+//            System.out.println("You succesfully authorised!");
+//        }
+//        else System.out.println("Login or password is not correct");
+
+    }
+//    public static void register() throws SQLException {
+//        Database.register();
+//
+//        System.out.println("You succesfully authorised!");
+//    }
+
 
 
 }
