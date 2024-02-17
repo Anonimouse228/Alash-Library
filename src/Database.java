@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Database {
@@ -10,6 +11,8 @@ public class Database {
     private static final String USERNAME = "postgres";
     private static final String PASSWORD = "ali1230123";
     private static final String ADMIN_PASSWORD = "admin123";
+
+
 
     public static void start_database() {
         try {
@@ -33,14 +36,7 @@ public class Database {
 //            return resultSet.next();
 //        }
     }
-    public static boolean logIn() throws SQLException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the login:");
-        String login = scanner.nextLine();
-
-        System.out.println("Enter the password:");
-        String password = scanner.nextLine();
-
+    public static boolean logIn(String login, String password) throws SQLException {
         String sql = "SELECT * FROM users WHERE login = ? AND password = ?";
         Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -53,41 +49,101 @@ public class Database {
             return resultSet.next();
         }
     }
-    public static void register() throws SQLException {
-//        String sql = "SELECT * FROM users WHERE login = ? AND password = ?";
-//        Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-//        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            resultSet.next();
-//            connection.close();
-//            return resultSet.next();
-//        }
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your surname:");
-        String surname = scanner.nextLine();
-        System.out.println("Enter your lastname:");
-        String lastname = scanner.nextLine();
-        System.out.println("Enter your id:");
-        String id = scanner.nextLine();
-        System.out.println("Enter the login:");
-        String login = scanner.nextLine();
-        System.out.println("Enter the password:");
-        String password = scanner.nextLine();
+    public static boolean register(String surname, String lastname, String id, String login, String password) throws SQLException {
         String sql = "INSERT INTO users (name, surname, id, login, password) VALUES (?, ?, ?, ?, ?)";
         Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, surname);
-            preparedStatement.setString(2, lastname);
-            preparedStatement.setString(3, id);
-            preparedStatement.setString(4, login);
-            preparedStatement.setString(5, password);
-            preparedStatement.executeUpdate();
-
+        if (isLoginTaken(login) || isIdTaken(id)) {
+            return false;
         }
+        else {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, surname);
+                preparedStatement.setString(2, lastname);
+                preparedStatement.setString(3, id);
+                preparedStatement.setString(4, login);
+                preparedStatement.setString(5, password);
+                connection.close();
+                preparedStatement.executeUpdate();
+            }
+        }
+        return true;
+    }
 
+    public static boolean addBook (String name, String author, String genre, String isbn, String language) throws SQLException {
+        String sql = "INSERT INTO books (name, author, genre, isbn, language) VALUES (?, ?, ?, ?, ?)";
+        Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        if (isIsbnTaken(isbn)) {
+            return false;
+        }
+        else {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, name);
+                preparedStatement.setString(2, author);
+                preparedStatement.setString(3, genre);
+                preparedStatement.setString(4, isbn);
+                preparedStatement.setString(5, language);
+                preparedStatement.executeUpdate();
+                connection.close();
+            }
+        }
+        return true;
 
     }
+
+
+
+
+
+    private static void addTransaction(String name, LocalDateTime timestamp, String action, String language) throws SQLException {
+
+    }
+
+
+    private static boolean isLoginTaken(String login) throws SQLException {
+        String query = "SELECT COUNT(*) FROM users WHERE login = ?";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, login);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0; // User exists if count > 0
+                }
+            }
+        }
+        return false; // Login is not taken, so return false
+    }
+    private static boolean isIdTaken(String id) throws SQLException {
+        String query = "SELECT COUNT(*) FROM users WHERE id = ?";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0; // User exists if count > 0, so return false
+                }
+            }
+        }
+        return false; // ID is not taken so return false
+    }
+    private static boolean isIsbnTaken(String isbn) throws SQLException {
+        String query = "SELECT COUNT(*) FROM books WHERE isbn = ?";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, isbn);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    return count > 0; // isbn taken if count > 0
+                }
+            }
+        }
+        return false; // isbn is not taken, so return false
+    }
+
+
+
 
 //
 //    private static void registerUser(Connection connection, String name, String surname, int id, String login, String password) throws SQLException {

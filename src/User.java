@@ -4,6 +4,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class User {
+    public static Object isAdmin;
     private final String surname;
     private String lastname;
     private final String id;
@@ -29,20 +30,8 @@ public class User {
         return Objects.equals(password, hashPassword(userPassword));
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getSurname() {
-        return surname;
+    public static boolean isAdmin(String login, String password) {
+        return Objects.equals(login, "admin") & Objects.equals(password, "a6c79a27049109e472b246b5dfbe08aedff1e9e2259597e54032dbad4958d4ad");
     }
 
     public static String hashPassword(String password) {

@@ -15,7 +15,7 @@ public class Main {
         User user = new User("a", "a", "a", "a", "a");
         library.addBook(book);
         System.out.println(user.getPassword());
-
+        System.out.println(User.hashPassword("aboba"));
         book.displayBookInfo();
         user.displayUserInfo();
         UI.menu();
