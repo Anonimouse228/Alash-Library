@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="408669dc-8a3a-4b25-8e43-ccb686058e46" name="Changes" comment="qqweqwe" />
+    <list default="true" id="408669dc-8a3a-4b25-8e43-ccb686058e46" name="Changes" comment="qqweqwe">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alash Library.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Alash Library.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Secrets/IDentification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Secrets/IDentification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Secrets/TODO" beforeDir="false" afterPath="$PROJECT_DIR$/src/Secrets/TODO" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,13 +73,17 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Mediafiles/Downloads/postgresql-42.7.1.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Али/IdeaProjects/Alash Library/src/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -94,7 +106,9 @@
       <workItem from="1707797655482" duration="1813000" />
       <workItem from="1707882947639" duration="4392000" />
       <workItem from="1707923015147" duration="6140000" />
-      <workItem from="1707940874462" duration="305000" />
+      <workItem from="1707940874462" duration="529000" />
+      <workItem from="1708080053763" duration="1000000" />
+      <workItem from="1708156644803" duration="1013000" />
     </task>
     <task id="LOCAL-00001" summary="qqweqwe">
       <option name="closed" value="true" />
@@ -160,7 +174,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707940881767</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="qqweqwe">
+      <option name="closed" value="true" />
+      <created>1707941217060</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1707941217060</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -17,7 +17,10 @@ public class Library {
     }
 
     public void addBook(Book book) {                //3
-        //addbook
+        if (books.contains((book.getIsbn()))) {
+
+            books.add(book);
+        }
     }
 
     public void returnBook(Book book) {
@@ -28,7 +31,7 @@ public class Library {
 
     public void takeBook(Book book) {
         if (books.contains(book)) {
-            //take book
+            //take book     //из books в checkedOutBooks и транзакцию сделать и всякое
         } else System.out.println("We don't have that book! But soon we will!");
     }
 
@@ -68,7 +71,7 @@ public class Library {
             }
         }
     }
-
+    //admin command
     public void displayUsers() {
         //крч надо
         if(users.isEmpty()) {
@@ -81,13 +84,14 @@ public class Library {
         }
 
     }
-    public void addBookToTheDB() {
+    public void addBookToTheDB(Book book) {
         // addbook
     }
 
-    public void deleteBookFromTheDB() {
+    public void deleteBookFromTheDB(Book book) {
         // deletebook
     }
+
 
 
 
