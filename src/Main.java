@@ -18,6 +18,6 @@ public class Main {
         System.out.println(User.hashPassword("aboba"));
         book.displayBookInfo();
         user.displayUserInfo();
-        UI.menu();
+        UI.start();
     }
 }

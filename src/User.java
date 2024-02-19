@@ -1,7 +1,9 @@
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class User {
     public static Object isAdmin;
@@ -22,6 +24,42 @@ public class User {
         this.id = id;
         this.isAdmin = false;
     }
+
+    public static void logIn() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the login: ");
+        String login = scanner.nextLine();
+        System.out.print("\nEnter the password: ");
+        String password = scanner.nextLine();
+        if (Database.logIn(login, hashPassword(password))) {
+            System.out.println("You successfully authorised!");
+            UI.menu();
+        }
+        else {
+            System.out.println("Login or password is not correct");
+            UI.start();
+        }
+    }
+
+    public static void register() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your surname:");
+        String surname = scanner.nextLine();
+        System.out.println("Enter your lastname:");
+        String lastname = scanner.nextLine();
+        System.out.println("Enter your id:");
+        String id = scanner.nextLine();
+        System.out.println("Enter the login:");
+        String login = scanner.nextLine();
+        System.out.println("Enter the password:");
+        String password = scanner.nextLine();
+
+        if (Database.register(surname, lastname, id, login, User.hashPassword(password))) {
+            System.out.println("You are successfully registered!");
+        }
+        else System.out.println("This login is already taken or id already exists3!");
+    }
+
 
     public String getPassword() {
         return password;
@@ -60,6 +98,7 @@ public class User {
     public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+
 }
 //woefjqwifhqwifjqwiefj
 
