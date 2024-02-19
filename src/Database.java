@@ -25,6 +25,7 @@ public class Database {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 //
 //        private static boolean authenticateUser(Connection connection, String login, String password) throws SQLException {
 //        String sql = "SELECT * FROM users WHERE login = ? AND password = ?";
@@ -35,7 +36,7 @@ public class Database {
 //            ResultSet resultSet = preparedStatement.executeQuery();
 //            return resultSet.next();
 //        }
-    }
+
     public static boolean logIn(String login, String password) throws SQLException {
         String sql = "SELECT * FROM users WHERE login = ? AND password = ?";
         Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
