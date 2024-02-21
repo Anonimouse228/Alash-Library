@@ -19,8 +19,6 @@ public class Database {
             Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
             System.out.println("Connected to PostgreSQL database!");
 
-            Scanner scanner = new Scanner(System.in);
-
             boolean exit = true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -46,7 +44,7 @@ public class Database {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            connection.close();
+//            connection.close();
             return resultSet.next();
         }
     }
@@ -63,7 +61,7 @@ public class Database {
                 preparedStatement.setString(3, id);
                 preparedStatement.setString(4, login);
                 preparedStatement.setString(5, password);
-                connection.close();
+//                connection.close();
                 preparedStatement.executeUpdate();
             }
         }
@@ -84,7 +82,7 @@ public class Database {
                 preparedStatement.setString(4, isbn);
                 preparedStatement.setString(5, language);
                 preparedStatement.executeUpdate();
-                connection.close();
+//                connection.close();
             }
         }
         return true;

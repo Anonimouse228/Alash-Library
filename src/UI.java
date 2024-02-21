@@ -1,29 +1,20 @@
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UI {
     public static void start() throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello! Welcome to the greatest library on this computer!\n Log in or register? (L/R)");
-        if (scanner.nextLine() == "L") {
-            System.out.print("Enter the login: ");
-            String login = scanner.nextLine();
-            System.out.print("\nEnter the password: ");
-            String password = scanner.nextLine();
-            if (Database.logIn(login, User.hashPassword(password))) {
-                System.out.println("You successfully authorised!");
-                menu();
-            }
-            else {
-                System.out.println("Login or password is not correct");
-                start();
-            }
+        System.out.println("Hello! Welcome to the greatest library on this computer!\n1.Log in\n2. Register");
+        String choice = scanner.nextLine();
+        if (Objects.equals(choice, "1")) {
+            User.logIn();
         }
-        else if (scanner.nextLine() == "R") {
+        else if (Objects.equals(choice, "2")) {
             User.register();
         }
         else {
-            System.out.println("Invalid input! please type \"L\" or \"R\"!");
+            System.out.println("Invalid input! please type \"1\" or \"2\"!");
             start();
         }
         
@@ -52,7 +43,7 @@ public class UI {
                 String choice = scanner.nextLine();
                 switch (choice) {
                     case "1":
-                        logIn();
+                        User.logIn();
                         System.out.println("----------------------------------------------------");
                         break;
                     case "2":
@@ -60,7 +51,7 @@ public class UI {
                         System.out.println("----------------------------------------------------");
                         break;
                     case "3":
-                        addBook();
+                        Book.addBook();
                         System.out.println("----------------------------------------------------");
                         break;
                     case "4":

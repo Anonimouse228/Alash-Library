@@ -39,9 +39,10 @@ public class User {
             System.out.println("Login or password is not correct");
             UI.start();
         }
+        UI.menu();
     }
 
-    public static void register() throws SQLException {
+    public static boolean register() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your surname:");
         String surname = scanner.nextLine();
@@ -57,7 +58,12 @@ public class User {
         if (Database.register(surname, lastname, id, login, User.hashPassword(password))) {
             System.out.println("You are successfully registered!");
         }
-        else System.out.println("This login is already taken or id already exists3!");
+        else {
+            System.out.println("This login is already taken or id already exists3!");
+            return false;
+        }
+        UI.menu();
+        return true;
     }
 
 
