@@ -62,8 +62,8 @@ public class Book {
     public static void takeBook() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the amount of books:");
-        int N = scanner.nextInt();
-        Database.returnBook();
+        String N = scanner.nextLine();
+        Database.findBookIsbn(N);
     }
 
     public static void findBook(boolean isName) {

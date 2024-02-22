@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="408669dc-8a3a-4b25-8e43-ccb686058e46" name="Changes" comment="qqweqwe">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2838eaf-4e0b-43a2-a5c2-5e0c8213caaa.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2838eaf-4e0b-43a2-a5c2-5e0c8213caaa.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a2838eaf-4e0b-43a2-a5c2-5e0c8213caaa/storage_v2/_src_/database/AlashLibrary.8BfDjw/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a2838eaf-4e0b-43a2-a5c2-5e0c8213caaa/storage_v2/_src_/database/AlashLibrary.8BfDjw/schema/public.abK9xQ.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +123,7 @@
       <workItem from="1708394867725" duration="3446000" />
       <workItem from="1708502115585" duration="8577000" />
       <workItem from="1708510874344" duration="642000" />
-      <workItem from="1708580124767" duration="1237000" />
+      <workItem from="1708580124767" duration="1585000" />
     </task>
     <task id="LOCAL-00001" summary="qqweqwe">
       <option name="closed" value="true" />
@@ -276,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708580274903</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="qqweqwe">
+      <option name="closed" value="true" />
+      <created>1708582427027</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1708582427027</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
