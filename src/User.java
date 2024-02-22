@@ -1,28 +1,31 @@
+import javax.xml.crypto.Data;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class User {
-    public static Object isAdmin;
-    private final String surname;
-    private String lastname;
-    private final String id;
+    public final boolean isAdmin;
+//    private final String surname;
+//    private String lastname;
+//    private final String id;
     private final String login;
     private final String password;
 
 
 
-    public User(String surname, String lastname, String id, String login, String password) {
-        this.lastname = lastname;
+    public User(String login, String password, boolean isAdmin) {
+//        this.lastname = lastname;
         this.login = login;
-        this.surname = surname;
-        this.lastname = lastname;
+//        this.surname = surname;
+//        this.lastname = lastname;
         this.password = hashPassword(password);
-        this.id = id;
-        this.isAdmin = false;
+//        this.id = id;
+        this.isAdmin = isAdmin;
     }
 
     public static void logIn() throws SQLException {
@@ -31,15 +34,17 @@ public class User {
         String login = scanner.nextLine();
         System.out.print("\nEnter the password: ");
         String password = scanner.nextLine();
+        User user = new User(login, password, isAdmin(login, password));
+
         if (Database.logIn(login, hashPassword(password))) {
             System.out.println("You successfully authorised!");
-            UI.menu();
+            UI.menu(user);
         }
         else {
             System.out.println("Login or password is not correct");
             UI.start();
         }
-        UI.menu();
+        UI.menu(user);
     }
 
     public static boolean register() throws SQLException {
@@ -55,15 +60,18 @@ public class User {
         System.out.println("Enter the password:");
         String password = scanner.nextLine();
 
-        if (Database.register(surname, lastname, id, login, User.hashPassword(password))) {
+        if (Database.register(surname, lastname, id, login, hashPassword(password))) {
             System.out.println("You are successfully registered!");
         }
         else {
-            System.out.println("This login is already taken or id already exists3!");
+            System.out.println("This login is already taken or id already exists!");
             return false;
         }
-        UI.menu();
+        UI.menu(null);
         return true;
+    }
+    public static void showUsers() throws SQLException {
+        Database.showUsers();
     }
 
 
@@ -74,11 +82,14 @@ public class User {
         return Objects.equals(password, hashPassword(userPassword));
     }
 
-    public static boolean isAdmin(String login, String password) {
+    private static boolean isAdmin(String login, String password) {
         return Objects.equals(login, "admin") & Objects.equals(password, "a6c79a27049109e472b246b5dfbe08aedff1e9e2259597e54032dbad4958d4ad");
     }
+    public boolean isAdmin() {
+        return Objects.equals(this.login, "admin") & Objects.equals(this.password, "a6c79a27049109e472b246b5dfbe08aedff1e9e2259597e54032dbad4958d4ad");
+    }
 
-    public static String hashPassword(String password) {
+    private static String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -97,13 +108,14 @@ public class User {
     }
 
     public void displayUserInfo() {
-        System.out.println("Surname: '" + surname + "'" +
-                ", Author: '" + lastname + "'" +
-                ", Login '" + login + "'");
     }
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
+
+//    public void displayUserInfo() {
+//        System.out.println("Surname: '" + surname + "'" +
+//                ", Author: '" + lastname + "'" +
+//                ", Login '" + login + "'");
+//    }
+
 
 }
 //woefjqwifhqwifjqwiefj

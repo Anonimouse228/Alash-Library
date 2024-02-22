@@ -1,4 +1,5 @@
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -9,45 +10,44 @@ public class UI {
         String choice = scanner.nextLine();
         if (Objects.equals(choice, "1")) {
             User.logIn();
-        }
-        else if (Objects.equals(choice, "2")) {
+        } else if (Objects.equals(choice, "2")) {
             User.register();
-        }
-        else {
+        } else {
             System.out.println("Invalid input! please type \"1\" or \"2\"!");
             start();
         }
-        
-
     }
-    public static void menu() throws SQLException {  // The function that shows the menu
+    public static void menu(User user) throws SQLException {  // The function that shows the menu
         Scanner scanner = new Scanner(System.in);
         boolean exit = true;
 
         System.out.println("Hello! Welcome to the greatest library on this computer!");
 
         while (exit) {
+            if (user.isAdmin()) {
                 System.out.println("""
-                        What do you want to do?
-                        1: Log in
-                        2: Log up
+                        What do you want to do, admin?
+                        1: Display all books
+                        2: Display last N books
                         3: Add a book
                         4: Return a book
                         5: Take a book
                         6: Find a book by a isbn\s
                         7: Find a book
-                        8: (ADMIN COMMAND)See transaction history
-                        9: (ADMIN COMMAND)See last N transactions:\s
-                        10: (ADMIN COMMAND)See users
-                        11: (ADMIN COMMAND)See users""");
+                        8: See transaction history
+                        9: See last N transactions:\s
+                        10: Log out
+                        11: (ADMIN COMMAND)See users
+                        12: (ADMIN COMMAND)See last n users
+                        13: (ADMIN COMMAND)Delete user""");
                 String choice = scanner.nextLine();
                 switch (choice) {
                     case "1":
-                        User.logIn();
+                        Book.displayBooks(false);
                         System.out.println("----------------------------------------------------");
                         break;
                     case "2":
-                        User.register();
+                        Book.displayBooks(true);
                         System.out.println("----------------------------------------------------");
                         break;
                     case "3":
@@ -55,18 +55,24 @@ public class UI {
                         System.out.println("----------------------------------------------------");
                         break;
                     case "4":
+                        Book.returnBook();
                         System.out.println("----------------------------------------------------");
                         break;
                     case "5":
+                        Book.takeBook();
                         System.out.println("----------------------------------------------------");
                         break;
                     case "6":
+                        Book.findBook(true);
                         System.out.println("----------------------------------------------------");
                         break;
                     case "7":
+
+                        Book.findBook(false);
                         System.out.println("----------------------------------------------------");
                         break;
                     case "8":
+                        Transaction.transactionHistory(false);
                         System.out.println("----------------------------------------------------");
                         break;
                     case "9":
@@ -76,56 +82,84 @@ public class UI {
                         System.out.println("----------------------------------------------------");
                         break;
                     case "11":
-                        exit = false;
+                        User.showUsers();
                         System.out.println("----------------------------------------------------");
+                    case "12":
+                        System.out.println("----------------------------------------------------");
+                        break;
                     default:
                         System.out.println("Invalid input! Please try again!");
                         System.out.println("----------------------------------------------------");
                         break;
                 }
+            }
+            else {
+                System.out.println("""
+                        What do you want to do?
+                        1: Display all books
+                        2: Display last N books
+                        3: Add a book
+                        4: Return a book
+                        5: Take a book
+                        6: Find a book by a isbn\s
+                        7: Find a book
+                        8: See transaction history
+                        9: See last N transactions:\s
+                        10: Log out
+                        11: Exit from the program""");
+                String choice = scanner.nextLine();
+                switch (choice) {
+                    case "1":
+                        Book.displayBooks(false);
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "2":
+                        Book.displayBooks(true);
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "3":
+                        Book.addBook();
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "4":
+                        Book.returnBook();
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "5":
+                        Book.takeBook();
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "6":
+                        Book.findBook(true);
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "7":
+
+                        Book.findBook(false);
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "8":
+                        Transaction.transactionHistory(false);
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "9":
+                        System.out.println("Enter the amount of transactions:");
+                        int N = scanner.nextInt();
+                        Transaction.transactionHistory(true);
+                        System.out.println("----------------------------------------------------");
+                        break;
+                    case "10":
+                        start();
+                        break;
+                    case "11":
+                        exit = false;
+                        break;
+                    default:
+                        System.out.println("Invalid input! Please try again!");
+                        System.out.println("----------------------------------------------------");
+                        break;
+                }
+            }
         }
     }
-
-
-    public static boolean logIn() throws SQLException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the login:");
-        String login = scanner.nextLine();
-
-        System.out.println("Enter the password:");
-        String password = scanner.nextLine();
-
-        if (Database.logIn(login, User.hashPassword(password))) {
-            System.out.println("You successfully authorised!");
-        }
-        else System.out.println("Login or password is not correct");
-        return User.isAdmin(login, User.hashPassword(password));
-    }
-
-
-    public static void addBook() throws SQLException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the book's name:");
-        String name = scanner.nextLine();
-        System.out.println("Enter the name of the author of the book:");
-        String author = scanner.nextLine();
-        System.out.println("Enter the book's genre:");
-        String genre = scanner.nextLine();
-        System.out.println("Enter the book's ISBN:");
-        String isbn = scanner.nextLine();
-        System.out.println("Enter the book's language");
-        String language = scanner.nextLine();
-
-        if (Database.addBook(name, author, genre, isbn, language)) {
-            System.out.println("Your book is successfully added!");
-        }
-        else System.out.println("This ISBN is already taken!");
-    }
-
-    public static void seeUsers() throws SQLException {
-
-    }
-
-
-
 }

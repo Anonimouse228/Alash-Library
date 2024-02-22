@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Transaction {
     private final Book item;
@@ -12,6 +13,16 @@ public class Transaction {
         this.action = action;
         this.transactionID = transactionID;
 
+    }
+    public static void transactionHistory(boolean isN) {
+
+        if (isN) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter the amount of transactions:");
+            int N = scanner.nextInt();
+            Database.transactionHistory(N);
+        }
+        else Database.transactionHistory();
     }
     public void displayTransactionInfo() {
         System.out.println("transactionID: '" + transactionID + "'" +

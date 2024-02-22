@@ -1,10 +1,5 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public class Database {
     private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/AlashLibrary";
@@ -14,16 +9,16 @@ public class Database {
 
 
 
-    public static void start_database() {
-        try {
-            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-            System.out.println("Connected to PostgreSQL database!");
-
-            boolean exit = true;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public static void start_database() {
+//        try {
+//            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+//            System.out.println("Connected to PostgreSQL database!");
+//
+//            boolean exit = true;
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 //
 //        private static boolean authenticateUser(Connection connection, String login, String password) throws SQLException {
 //        String sql = "SELECT * FROM users WHERE login = ? AND password = ?";
@@ -43,8 +38,7 @@ public class Database {
             preparedStatement.setString(2, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-//            connection.close();
+            connection.close();
             return resultSet.next();
         }
     }
@@ -86,6 +80,98 @@ public class Database {
             }
         }
         return true;
+    }
+
+//    public static ResultSet showUsers () throws SQLException {
+//        try {
+//            Class.forName("com.mysql.jdbc.Driver");
+//            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+//            Statement st = connection.createStatement();
+//            return st.executeQuery("SELECT * FROM users");
+//        }
+//        catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
+    public static void showUsers() throws SQLException {
+        String sql = "SELECT * FROM users";
+        Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (true) {
+                assert rs != null;
+                if (!rs.next()) break;
+                System.out.println(rs.getInt("user_id") + ", " +
+                        "surname: " + rs.getString("name") + ", " +
+                        "lastname: " + rs.getString("surname") + ", " +
+                        "login: " + rs.getString("login") + ", " +
+                        "id: " + rs.getString("id"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public static void transactionHistory() {
+
+    }
+
+    public static void transactionHistory(int N) {
+
+    }
+
+    public static void displayBooks() throws SQLException {
+        String sql = "SELECT * FROM books";
+        Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (true) {
+                assert rs != null;
+                if (!rs.next()) break;
+                System.out.println(rs.getInt("id") + ", " +
+                        "name: " + rs.getString("name") + ", " +
+                        "author: " + rs.getString("author") + ", " +
+                        "genre: " + rs.getString("genre") + ", " +
+                        "isbn: " + rs.getString("isbn") + ", " +
+                        "language: " + rs.getString("language") + ", ");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void displayBooks(int N) throws SQLException {
+        String sql = "SELECT * FROM books ORDER BY publication_date DESC LIMIT N;";
+        Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (true) {
+                assert rs != null;
+                if (!rs.next()) break;
+                System.out.println(rs.getInt("id") + ", " +
+                        "name: " + rs.getString("name") + ", " +
+                        "author: " + rs.getString("author") + ", " +
+                        "genre: " + rs.getString("genre") + ", " +
+                        "isbn: " + rs.getString("isbn") + ", " +
+                        "language: " + rs.getString("language") + ", ");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void returnBook() {
+        
+    }
+
+    public static void findBookName(String name) {
+
+    }
+    public static void findBookIsbn(String isbn) {
+
     }
 
 
