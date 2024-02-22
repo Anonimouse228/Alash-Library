@@ -66,7 +66,7 @@ public class Book {
         Database.findBookIsbn(N);
     }
 
-    public static void findBook(boolean isName) {
+    public static void findBook(boolean isName) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         if (isName) {
 

@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 public class Database {
     private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/AlashLibrary";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "ali1230123";
+    private static final String PASSWORD = "Na260206";
     private static final String ADMIN_PASSWORD = "admin123";
 
 
@@ -167,7 +167,25 @@ public class Database {
         
     }
 
-    public static void findBookName(String name) {
+    public static boolean findBookName(String name) throws SQLException {
+        String quer="SELECT * FROM books WHERE name =? ";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(quer)) {
+            preparedStatement.setString(1, name);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (true) {
+                    assert rs != null;
+                    if (!rs.next()) break;
+                    System.out.println(rs.getInt("id") + ", " +
+                            "name: " + rs.getString("name") + ", " +
+                            "author: " + rs.getString("author") + ", " +
+                            "genre: " + rs.getString("genre") + ", " +
+                            "isbn: " + rs.getString("isbn") + ", " +
+                            "language: " + rs.getString("language") + ", ");
+                }
+            }
+        }
+        return false; // Logi
 
     }
     public static void findBookIsbn(String isbn) {
@@ -230,5 +248,55 @@ public class Database {
 
 
 
-
+//
+//    private static void registerUser(Connection connection, String name, String surname, int id, String login, String password) throws SQLException {
+//        String sql = "INSERT INTO users (name, surname, id, login, password) VALUES (?, ?, ?, ?, ?)";
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+//            preparedStatement.setString(1, name);
+//            preparedStatement.setString(2, surname);
+//            preparedStatement.setInt(3, id);
+//            preparedStatement.setString(4, login);
+//            preparedStatement.setString(5, password);
+//
+//            preparedStatement.executeUpdate();
+//        }
+//    }
+//    private static void displayUsers(Connection connection) {
+//        try {
+//            String sql = "SELECT * FROM users";
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                 ResultSet resultSet = preparedStatement.executeQuery()) {
+//
+//                while (resultSet.next()) {
+//                    System.out.println("----------------------------------");
+//                    System.out.println("User ID: " + resultSet.getInt("user_id"));
+//                    System.out.println("Name: " + resultSet.getString("name"));
+//                    System.out.println("Surname: " + resultSet.getString("surname"));
+//                    System.out.println("ID: " + resultSet.getInt("id"));
+//                    System.out.println("Login: " + resultSet.getString("login"));
+//                    System.out.println("----------------------------------");
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    private static void deleteUser(Connection connection, String userToDelete) {
+//        try {
+//            String sql = "DELETE FROM users WHERE login = ?";
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+//                preparedStatement.setString(1, userToDelete);
+//
+//                int rowsAffected = preparedStatement.executeUpdate();
+//
+//                if (rowsAffected > 0) {
+//                    System.out.println("User deleted successfully!");
+//                } else {
+//                    System.out.println("User not found or deletion failed.");
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
