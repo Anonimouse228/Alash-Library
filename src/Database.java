@@ -95,7 +95,27 @@ public class Database {
 //
 //        return null;
 //    }
+
     public static void showUsers() throws SQLException {
+        String sql = "SELECT * FROM users";
+        Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet rs = pstmt.executeQuery();
+            while (true) {
+                assert rs != null;
+                if (!rs.next()) break;
+                System.out.println(rs.getInt("user_id") + ", " +
+                        "surname: " + rs.getString("name") + ", " +
+                        "lastname: " + rs.getString("surname") + ", " +
+                        "login: " + rs.getString("login") + ", " +
+                        "id: " + rs.getString("id"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void showUsers(int N) throws SQLException {
         String sql = "SELECT * FROM users";
         Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -174,7 +194,6 @@ public class Database {
             preparedStatement.setString(1, "%" + name + "%");
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (!rs.next()) {
-                    System.out.println("We haven't found anything like that!");
                     return false;
                 }
 

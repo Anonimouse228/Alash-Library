@@ -72,12 +72,16 @@ public class Book {
 
             System.out.println("Enter the name of the book:");
             String N = scanner.nextLine();
-            Database.findBookName(N);
+            if (!Database.findBookName(N)) {
+                System.out.println("We haven't found anything like that!");
+            }
         }
         else {
             System.out.println("Enter the ISBN of your book:");
             String N = scanner.nextLine();
-            Database.findBookIsbn(N);
+            if (!Database.findBookName(N)) {
+                System.out.println("We haven't found anything like that!");
+            }
         }
     }
 

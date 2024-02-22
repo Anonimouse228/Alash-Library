@@ -27,15 +27,16 @@ public class UI {
             if (user.isAdmin()) {
                 System.out.println("""
                         What do you want to do, admin?
+                                                
                         1: Display all books
                         2: Display last N books
                         3: Add a book
-                        4: Return a book
-                        5: Take a book
+                        4: Return a book            (IN PROGRESS)
+                        5: Take a book              (IN PROGRESS)
                         6: Find a book by a isbn\s
                         7: Find a book
-                        8: See transaction history
-                        9: See last N transactions:\s
+                        8: See transaction history  (IN PROGRESS)
+                        9: See last N transactions: (IN PROGRESS)
                         10: Log out
                         11: (ADMIN COMMAND)See users
                         12: (ADMIN COMMAND)See last n users
@@ -67,7 +68,6 @@ public class UI {
                         System.out.println("----------------------------------------------------");
                         break;
                     case "7":
-
                         Book.findBook(false);
                         System.out.println("----------------------------------------------------");
                         break;
@@ -82,9 +82,10 @@ public class UI {
                         System.out.println("----------------------------------------------------");
                         break;
                     case "11":
-                        User.showUsers();
+                        User.showUsers(true);
                         System.out.println("----------------------------------------------------");
                     case "12":
+                        User.showUsers(false);
                         System.out.println("----------------------------------------------------");
                         break;
                     default:

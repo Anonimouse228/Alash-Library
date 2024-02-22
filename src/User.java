@@ -70,8 +70,13 @@ public class User {
         UI.menu(null);
         return true;
     }
-    public static void showUsers() throws SQLException {
-        Database.showUsers();
+    public static void showUsers(boolean isN) throws SQLException {
+        if (!isN) {
+            Scanner scanner = new Scanner(System.in);
+            int N = scanner.nextInt();
+            Database.showUsers(N);
+        }
+        else Database.showUsers();
     }
 
 
