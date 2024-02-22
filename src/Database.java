@@ -209,12 +209,88 @@ public class Database {
                 }
             }
         }
-        return false; // Logi
-
+        return false;
     }
     public static void findBookIsbn(String isbn) {
 
     }
+
+    public static boolean findBookAuthor(String author) throws SQLException {
+        String quer="SELECT * FROM books WHERE name LIKE ?";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(quer)) {
+            preparedStatement.setString(1, "%" + author + "%");
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (!rs.next()) {
+                    return false;
+                }
+
+                while (true) {
+                    assert rs != null;
+                    if (!rs.next()) break;
+                    System.out.println(rs.getInt("id") + ", " +
+                            "name: " + rs.getString("name") + ", " +
+                            "author: " + rs.getString("author") + ", " +
+                            "genre: " + rs.getString("genre") + ", " +
+                            "isbn: " + rs.getString("isbn") + ", " +
+                            "language: " + rs.getString("language") + ", ");
+                }
+            }
+        }
+        return false;
+    }
+    public static boolean findBookGenre(String genre) throws SQLException {
+        String quer="SELECT * FROM books WHERE name LIKE ?";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(quer)) {
+            preparedStatement.setString(1, "%" + genre + "%");
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (!rs.next()) {
+                    return false;
+                }
+
+                while (true) {
+                    assert rs != null;
+                    if (!rs.next()) break;
+                    System.out.println(rs.getInt("id") + ", " +
+                            "name: " + rs.getString("name") + ", " +
+                            "author: " + rs.getString("author") + ", " +
+                            "genre: " + rs.getString("genre") + ", " +
+                            "isbn: " + rs.getString("isbn") + ", " +
+                            "language: " + rs.getString("language") + ", ");
+                }
+            }
+        }
+        return false;
+    }
+
+
+    public static boolean findBookLanguage(String language) throws SQLException {
+        String quer="SELECT * FROM books WHERE name LIKE ?";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(quer)) {
+            preparedStatement.setString(1, "%" + language + "%");
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (!rs.next()) {
+                    return false;
+                }
+
+                while (true) {
+                    assert rs != null;
+                    if (!rs.next()) break;
+                    System.out.println(rs.getInt("id") + ", " +
+                            "name: " + rs.getString("name") + ", " +
+                            "author: " + rs.getString("author") + ", " +
+                            "genre: " + rs.getString("genre") + ", " +
+                            "isbn: " + rs.getString("isbn") + ", " +
+                            "language: " + rs.getString("language") + ", ");
+                }
+            }
+        }
+        return false;
+    }
+
+
 
 
 
