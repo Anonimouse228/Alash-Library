@@ -168,10 +168,10 @@ public class Database {
     }
 
     public static boolean findBookName(String name) throws SQLException {
-        String quer="SELECT * FROM books WHERE name =? ";
+        String quer="SELECT * FROM books WHERE name LIKE ? ";
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(quer)) {
-            preparedStatement.setString(1, name);
+             preparedStatement.setString(1, "%" + name + "%");
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (true) {
                     assert rs != null;
