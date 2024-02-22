@@ -230,56 +230,5 @@ public class Database {
 
 
 
-//
-//    private static void registerUser(Connection connection, String name, String surname, int id, String login, String password) throws SQLException {
-//        String sql = "INSERT INTO users (name, surname, id, login, password) VALUES (?, ?, ?, ?, ?)";
-//        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//            preparedStatement.setString(1, name);
-//            preparedStatement.setString(2, surname);
-//            preparedStatement.setInt(3, id);
-//            preparedStatement.setString(4, login);
-//            preparedStatement.setString(5, password);
-//
-//            preparedStatement.executeUpdate();
-//        }
-//    }
-//    private static void displayUsers(Connection connection) {
-//        try {
-//            String sql = "SELECT * FROM users";
-//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//                 ResultSet resultSet = preparedStatement.executeQuery()) {
-//
-//                while (resultSet.next()) {
-//                    System.out.println("----------------------------------");
-//                    System.out.println("User ID: " + resultSet.getInt("user_id"));
-//                    System.out.println("Name: " + resultSet.getString("name"));
-//                    System.out.println("Surname: " + resultSet.getString("surname"));
-//                    System.out.println("ID: " + resultSet.getInt("id"));
-//                    System.out.println("Login: " + resultSet.getString("login"));
-//                    System.out.println("----------------------------------");
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    private static void deleteUser(Connection connection, String userToDelete) {
-//        try {
-//            String sql = "DELETE FROM users WHERE login = ?";
-//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//                preparedStatement.setString(1, userToDelete);
-//
-//                int rowsAffected = preparedStatement.executeUpdate();
-//
-//                if (rowsAffected > 0) {
-//                    System.out.println("User deleted successfully!");
-//                } else {
-//                    System.out.println("User not found or deletion failed.");
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
 }
