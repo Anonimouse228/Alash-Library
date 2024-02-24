@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class UI {
     public static void start() throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello! Welcome to the greatest library on this computer!\n1.Log in\n2. Register");
+        System.out.println("Hello! Welcome to the greatest library on this computer!\n1. Log in\n2. Register");
         String choice = scanner.nextLine();
         if (Objects.equals(choice, "1")) {
             User.logIn();
@@ -31,16 +31,11 @@ public class UI {
                         1: Display all books
                         2: Display last N books
                         3: Add a book
-                        4: Return a book            (IN PROGRESS)
-                        5: Take a book              (IN PROGRESS)
-                        6: Find a book by a isbn\s
-                        7: Find a book
-                        8: See transaction history  (IN PROGRESS)
-                        9: See last N transactions: (IN PROGRESS)
-                        10: Log out
-                        11: (ADMIN COMMAND)See users
-                        12: (ADMIN COMMAND)See last n users
-                        13: (ADMIN COMMAND)Delete user""");
+                        4: Find a book by a isbn\s
+                        5: Find a book
+                        6: Log out
+                        7: (ADMIN COMMAND)See users
+                        8: (ADMIN COMMAND)See last n users""");
                 String choice = scanner.nextLine();
                 switch (choice) {
                     case "1":
@@ -56,35 +51,21 @@ public class UI {
                         System.out.println("----------------------------------------------------");
                         break;
                     case "4":
-                        Book.returnBook();
-                        System.out.println("----------------------------------------------------");
-                        break;
-                    case "5":
-                        Book.takeBook();
-                        System.out.println("----------------------------------------------------");
-                        break;
-                    case "6":
                         Book.findBook(true);
                         System.out.println("----------------------------------------------------");
                         break;
-                    case "7":
+                    case "5":
                         Book.findBook(false);
                         System.out.println("----------------------------------------------------");
                         break;
-                    case "8":
-                        Transaction.transactionHistory(false);
+                    case "6":
                         System.out.println("----------------------------------------------------");
+                        exit = false;
                         break;
-                    case "9":
-                        System.out.println("----------------------------------------------------");
-                        break;
-                    case "10":
-                        System.out.println("----------------------------------------------------");
-                        break;
-                    case "11":
+                    case "7":
                         User.showUsers(true);
                         System.out.println("----------------------------------------------------");
-                    case "12":
+                    case "8":
                         User.showUsers(false);
                         System.out.println("----------------------------------------------------");
                         break;
@@ -96,18 +77,14 @@ public class UI {
             }
             else {
                 System.out.println("""
-                        What do you want to do?
+                        What do you want to do, admin?
+                                                
                         1: Display all books
                         2: Display last N books
                         3: Add a book
-                        4: Return a book
-                        5: Take a book
-                        6: Find a book by a isbn\s
-                        7: Find a book
-                        8: See transaction history
-                        9: See last N transactions:\s
-                        10: Log out
-                        11: Exit from the program""");
+                        4: Find a book by a isbn\s
+                        5: Find a book
+                        6: Log out""");
                 String choice = scanner.nextLine();
                 switch (choice) {
                     case "1":
@@ -123,36 +100,15 @@ public class UI {
                         System.out.println("----------------------------------------------------");
                         break;
                     case "4":
-                        Book.returnBook();
-                        System.out.println("----------------------------------------------------");
-                        break;
-                    case "5":
-                        Book.takeBook();
-                        System.out.println("----------------------------------------------------");
-                        break;
-                    case "6":
                         Book.findBook(true);
                         System.out.println("----------------------------------------------------");
                         break;
-                    case "7":
-
+                    case "5":
                         Book.findBook(false);
                         System.out.println("----------------------------------------------------");
                         break;
-                    case "8":
-                        Transaction.transactionHistory(false);
+                    case "6":
                         System.out.println("----------------------------------------------------");
-                        break;
-                    case "9":
-                        System.out.println("Enter the amount of transactions:");
-                        int N = scanner.nextInt();
-                        Transaction.transactionHistory(true);
-                        System.out.println("----------------------------------------------------");
-                        break;
-                    case "10":
-                        start();
-                        break;
-                    case "11":
                         exit = false;
                         break;
                     default:

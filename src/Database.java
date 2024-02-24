@@ -164,13 +164,13 @@ public class Database {
     }
 
     public static void displayBooks(int N) throws SQLException {
-        String sql = "SELECT * FROM books ORDER BY publication_date DESC LIMIT N;";
+        String sql = "SELECT * FROM books LIMIT ?;";
         Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, N);
+
             ResultSet rs = pstmt.executeQuery();
-            while (true) {
-                assert rs != null;
-                if (!rs.next()) break;
+            while (rs.next()) {
                 System.out.println(rs.getInt("id") + ", " +
                         "name: " + rs.getString("name") + ", " +
                         "author: " + rs.getString("author") + ", " +
@@ -180,8 +180,18 @@ public class Database {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        } finally {
+
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
         }
     }
+
 
     public static void returnBook() {
         
@@ -211,8 +221,31 @@ public class Database {
         }
         return false;
     }
-    public static void findBookIsbn(String isbn) {
+    public static boolean findBookIsbn(String isbn) {
+        String quer="SELECT * FROM books WHERE isbn LIKE ?";
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(quer)) {
+            preparedStatement.setString(1, "%" + isbn + "%");
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (!rs.next()) {
+                    return false;
+                }
 
+                while (true) {
+                    assert rs != null;
+                    if (!rs.next()) break;
+                    System.out.println(rs.getInt("id") + ", " +
+                            "name: " + rs.getString("name") + ", " +
+                            "author: " + rs.getString("author") + ", " +
+                            "genre: " + rs.getString("genre") + ", " +
+                            "isbn: " + rs.getString("isbn") + ", " +
+                            "language: " + rs.getString("language") + ", ");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 
     public static boolean findBookAuthor(String author) throws SQLException {

@@ -68,7 +68,7 @@ public class Book {
 
     public static void findBook(boolean isName) throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        if (isName) {
+        if (!isName) {
 
             System.out.println("Enter the name of the book:");
             String N = scanner.nextLine();
@@ -79,7 +79,7 @@ public class Book {
         else {
             System.out.println("Enter the ISBN of your book:");
             String N = scanner.nextLine();
-            if (!Database.findBookName(N)) {
+            if (!Database.findBookIsbn(N)) {
                 System.out.println("We haven't found anything like that!");
             }
         }
